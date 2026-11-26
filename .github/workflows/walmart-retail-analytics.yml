@@ -1,0 +1,53 @@
+name: Walmart retail analytics validation
+
+on:
+  push:
+    paths:
+      - "Walmart sales/**"
+      - ".github/workflows/walmart-retail-analytics.yml"
+  pull_request:
+    paths:
+      - "Walmart sales/**"
+      - ".github/workflows/walmart-retail-analytics.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  run-analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+          cache-dependency-path: "Walmart sales/retail-sales-analytics/requirements.txt"
+
+      - name: Install dependencies
+        run: python -m pip install -r "Walmart sales/retail-sales-analytics/requirements.txt"
+
+      - name: Run reproducible analysis
+        run: >-
+          python "Walmart sales/retail-sales-analytics/analyze_sales.py"
+          --input "Walmart sales/WalmartSalesData.csv.csv"
+          --output-dir "Walmart sales/retail-sales-analytics/outputs"
+
+      - name: Check generated KPI summary
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path("Walmart sales/retail-sales-analytics/outputs/summary.json")
+          summary = json.loads(path.read_text(encoding="utf-8"))
+          assert summary["row_count"] == 1000, summary
+          assert summary["unique_invoice_ids"] == 1000, summary
+          assert round(summary["total_sales"], 2) == 322966.75, summary
+          assert round(summary["gross_income"], 2) == 15379.37, summary
+          print("Dataset validation passed.")
+          PY
