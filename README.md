@@ -1,74 +1,40 @@
-# MySQL Data Analytics Portfolio
+# MySQL & Retail Data Analytics Portfolio
 
-A practical SQL portfolio containing a Walmart sales analysis dataset and a Swiggy dataset. The Walmart case study includes a MySQL 8 database export and a companion set of reusable analysis queries.
+A practical SQL and retail analytics portfolio with a Walmart sales case study and a Swiggy dataset.
 
-## Projects
+## 1. Walmart Sales — End-to-End Analytics
 
-### 1. Walmart Sales Analysis
+**Start here:** [Retail Sales Analytics project](Walmart%20sales/retail-sales-analytics/)
 
-**Files**
-- [Project notes](Walmart%20sales/Readme.Md)
+This project combines:
+- **Python** — repeatable data validation, KPI summaries, grouped analysis tables, and charts.
+- **MySQL** — database restore plus 20 reusable SQL analysis queries, including CTEs and window functions.
+- **Power BI** — data model, DAX measures, dashboard layout, and validation instructions.
+
+Related source files:
+- [Walmart project overview](Walmart%20sales/Readme.Md)
+- [Source CSV dataset](Walmart%20sales/WalmartSalesData.csv.csv)
 - [MySQL database dump](Walmart%20sales/walmartsales_backup.sql)
-- [Companion SQL analysis queries](Walmart%20sales/analysis_queries.sql)
-- [Source CSV](Walmart%20sales/WalmartSalesData.csv.csv)
+- [SQL analysis queries](Walmart%20sales/analysis_queries.sql)
 
-The dump creates the `walmartsales` database table named `sales`. Its columns cover invoice, branch, city, customer type, gender, product line, unit price, quantity, tax, total, date/time, payment, cost of goods sold, gross income, rating, and derived time fields.
+The checked source dataset contains 1,000 transactions and 17 columns covering 1 January 2019 to 30 March 2019. The project README documents descriptive totals and explains how to reproduce them.
 
-**Load the database**
-
-Using the MySQL command-line client from the repository root:
-
-```bash
-mysql -u root -p < "Walmart sales/walmartsales_backup.sql"
-```
-
-Then open a MySQL session and run:
-
-```sql
-USE walmartsales;
-SELECT COUNT(*) AS invoice_count FROM sales;
-```
-
-Run the companion analysis file after loading the dump:
-
-```bash
-mysql -u root -p walmartsales < "Walmart sales/analysis_queries.sql"
-```
-
-The SQL file includes KPI summaries, product and branch comparisons, payment/customer breakdowns, time-based analysis, ranking, and window-function examples.
-
-### 2. Swiggy Dataset
+## 2. Swiggy Dataset
 
 - [Swiggy CSV dataset](casestudy-swiggy/Swiggy.csv)
 
-This folder currently provides the source dataset. A separate SQL schema, analysis notebook, and documented findings have not yet been added.
+This folder currently provides the dataset itself. A separate analysis notebook and documented results have not yet been added.
 
 ## Skills Demonstrated
 
-- SQL querying, filtering, grouping, and aggregation
-- Business KPI calculation and sales analysis
-- Joins/CTEs/window-function practice in the companion query file
-- Working with CSV data and MySQL database exports
-- Translating transaction data into business questions
+- SQL querying, filtering, grouping, aggregation, CTEs, and window functions
+- Python data analysis with Pandas and Matplotlib
+- Data validation, descriptive statistics, and visual reporting
+- Power BI data modeling and DAX dashboard planning
 
-## Suggested Analysis Questions
+## Reproducibility
 
-1. Which product lines generate the highest sales?
-2. Which branches and cities contribute most to revenue?
-3. How do payment methods and customer types compare?
-4. Which days and time periods have the most sales?
-5. How do product ratings differ by product line?
-6. How does each month's sales compare with the previous month?
-
-## Requirements
-
-- MySQL 8.0 or later is recommended for the window-function examples.
-- Use the MySQL client or MySQL Workbench to restore the SQL dump.
-- The CSV files can be inspected with a spreadsheet or a data-analysis tool.
-
-## Data and Reproducibility
-
-The Walmart SQL dump contains the table definition and rows needed to reproduce the queries. Query outputs can vary if the source data is changed. No performance, business-impact, or predictive-accuracy claims are made in this repository.
+Follow the setup instructions in the individual project READMEs. The Walmart project includes a Python requirements file and SQL scripts. Power BI Desktop is required to build and interact with the report; the repository currently provides the dashboard implementation guide rather than a PBIX report.
 
 ## Author
 
