@@ -111,7 +111,8 @@ The parent folder contains the MySQL 8 dump and a companion SQL file with 20 ana
 From the parent `Walmart sales/` folder, load the dump:
 
 ```bash
-mysql -u root -p < "walmartsales_backup.sql"
+mysql -u root -p -e "CREATE DATABASE IF NOT EXISTS walmartsales;"
+mysql -u root -p walmartsales < "walmartsales_backup.sql"
 ```
 
 Then run:
