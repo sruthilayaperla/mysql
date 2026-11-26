@@ -2,6 +2,12 @@
 
 An end-to-end, reproducible retail sales analytics case study using **Python, MySQL, and Power BI**. This project starts from the Walmart sales CSV already stored in this repository and creates a repeatable analysis workflow with summary tables, data-quality checks, charts, SQL analysis, and a Power BI dashboard build guide.
 
+## Source files
+
+- [Original CSV dataset](../WalmartSalesData.csv.csv)
+- [MySQL 8 database dump](../walmartsales_backup.sql)
+- [20 reusable SQL analysis queries](../analysis_queries.sql)
+
 ## Project structure
 
 ```text
