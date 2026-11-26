@@ -71,7 +71,7 @@ def load_data(csv_path: Path) -> tuple[pd.DataFrame, dict[str, Any]]:
     quality = {
         "source_file": csv_path.name,
         "row_count": raw_rows,
-        "column_count": len(df.columns) - 4,
+        "column_count": len(REQUIRED_COLUMNS),
         "unique_invoice_ids": int(df["Invoice ID"].nunique()),
         "duplicate_invoice_rows": duplicate_invoice_rows,
         "missing_cells_in_source_columns": missing_cells_before,
